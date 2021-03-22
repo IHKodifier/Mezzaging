@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "541935091548",
-    "firebase_url": "https://authenticatedboilerplate-demo.firebaseio.com",
-    "project_id": "authenticatedboilerplate-demo",
-    "storage_bucket": "authenticatedboilerplate-demo.appspot.com"
+    "project_number": "904237220045",
+    "project_id": "zimster-dev",
+    "storage_bucket": "zimster-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:541935091548:android:20c73f29e5605b78720b99",
+        "mobilesdk_app_id": "1:904237220045:android:61535c9e234614ab442984",
         "android_client_info": {
-          "package_name": "com.Replace.with.your.org.AuthenticatedBoilerPlate"
+          "package_name": "enigmatek.com.pk.zimster"
         }
       },
       "oauth_client": [
         {
-          "client_id": "541935091548-hvdmi3ggob5um4pjsfa6ggsopm1vaagq.apps.googleusercontent.com",
+          "client_id": "904237220045-dpsnfbqlua8s52pahpbhvhbfi8tcvrgk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "enigmatek.com.pk.zimster",
+            "certificate_hash": "2f49bff874564b9575503f6252dca2360f870a97"
+          }
+        },
+        {
+          "client_id": "904237220045-0mk34ktj92md0b4t338nhqf0p9t3sd1a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD_UzYWeI6qDBMqKnFzOZcLQymurIQGyhA"
+          "current_key": "AIzaSyADvidQlXfU1AGHeML1FodVkewzVtdQ8Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "541935091548-hvdmi3ggob5um4pjsfa6ggsopm1vaagq.apps.googleusercontent.com",
+              "client_id": "904237220045-0mk34ktj92md0b4t338nhqf0p9t3sd1a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

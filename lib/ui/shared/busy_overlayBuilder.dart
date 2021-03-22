@@ -11,27 +11,30 @@ class BusyOverlayBuilder extends StatelessWidget {
   final String title;
   final bool busyValue;
 
-  const BusyOverlayBuilder({this.childWhenBusy, @required this.childWhenIdle, this.title, @required this.busyValue}) ;
+  const BusyOverlayBuilder(
+      {this.childWhenBusy,
+      @required this.childWhenIdle,
+      this.title,
+      @required this.busyValue});
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.maybeOf(context).size;
     return Material(
         child: Stack(children: <Widget>[
       childWhenIdle,
       IgnorePointer(
-        child: childWhenBusy!=null? childWhenBusy:
-        DefaultChildWhenBusy(busyValue: busyValue, screenSize: screenSize, title: title),
+        child: childWhenBusy != null
+            ? childWhenBusy
+            : DefaultChildWhenBusy(
+                busyValue: busyValue, screenSize: screenSize, title: title),
       ),
     ]));
   }
-
- 
 }
 
 class DefaultChildWhenBusy extends StatelessWidget {
   const DefaultChildWhenBusy({
-    
     @required this.busyValue,
     @required this.screenSize,
     @required this.title,

@@ -1,4 +1,5 @@
 //TODO: generate all routes here
+
 const String LoginRoute = 'LoginRoute';
 const String HomeViewRoute = 'HomeViewRoute';
 const String NewAccountSuccessRoute = 'NewAccountSuccess';
@@ -7,3 +8,5 @@ const String StartupRoute = 'StartupView';
 const String WelcomeRoute = 'WelcomeRoute';
 const String ViewProfileViewRoute = 'ViewProfileView';
 const String PhoneSignupViewRoute = 'PhoneSignUpView';
+const String ConversationViewRoute = 'ConversationView';
+const String AppContactsListView = 'AppContactsListView';

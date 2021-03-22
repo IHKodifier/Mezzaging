@@ -1,6 +1,9 @@
-import 'package:AuthenticatedBoilerPlate/ui/views/home/home_view.dart';
-import 'package:AuthenticatedBoilerPlate/ui/views/profile/view_profile_view.dart';
-import 'package:AuthenticatedBoilerPlate/ui/views/startup/startup_view.dart';
+import 'package:zimster_messaging/ui/views/appContacts/appContact_list_view.dart';
+import 'package:zimster_messaging/ui/views/chat/chat_log.dart';
+import 'package:zimster_messaging/ui/views/home/home_view.dart';
+import 'package:zimster_messaging/ui/views/profile/view_profile_view.dart';
+import 'package:zimster_messaging/ui/views/startup/startup_view.dart';
+
 import '../ui/views/login/phone_signup_view.dart';
 
 import '../ui/views/login/login_view.dart';
@@ -36,6 +39,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       break;
     case routes.PhoneSignupViewRoute:
       return MaterialPageRoute(builder: (context) => PhoneSignupView());
+      break;
+    case routes.AppContactsListView:
+      return MaterialPageRoute(builder: (context) => AppContactsListView());
+      break;
+    case routes.ConversationViewRoute:
+      var groupId = settings.arguments;
+      return MaterialPageRoute(
+          builder: (context) => ChatLogWidget(
+                chatGroupId: groupId,
+              ));
       break;
 
     default:

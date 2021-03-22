@@ -17,24 +17,24 @@ class onBoaringPageView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        
         Spacer(flex: 2),
-        Text(
-          "Authenticated BoilerPlate",
-          style:Theme.of(context).textTheme.headline4.copyWith(fontSize: 22,
-            fontWeight: FontWeight.w800, color: Theme.of(context).primaryColor)),
+        Text("Zimster Messenger",
+            style: Theme.of(context).textTheme.headline4.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+                color: Theme.of(context).primaryColor)),
         Spacer(),
         Text(
           text,
           textAlign: TextAlign.center,
         ),
-        
+
         Spacer(),
         Image.asset(
           image,
-          width: MediaQuery.of(context).size.width*.70,
+          width: MediaQuery.maybeOf(context).size.width * .70,
           // getProportionateScreenHeight(265),
-          // width: 
+          // width:
           // getProportionateScreenWidth(235),
         ),
         // Spacer(),

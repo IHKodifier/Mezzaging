@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:zimster_messaging/models/appuser-model.dart';
 import '../../../app/service_locator.dart';
 import '../../../app/route_paths.dart';
 import '../../../services/authentication_service.dart';
@@ -40,13 +42,18 @@ class StartupViewModel extends BaseViewModel {
     setBusy(true);
     ConsoleUtility.printDeviceInfo();
     var hasLoggedInUser = await _authenticationService.isUserLoggedIn();
-    setBusy(false);
     if (hasLoggedInUser) {
       //  await  _authenticationService.setAuthenticatedUserFromFirestore();
+      String id = _authenticationService.authInstance.currentUser.email;
+
+      DocumentSnapshot documentSnapshot = await _authenticationService.getAppUserDocById(id);
+      // _authenticationService.currentAppUser =
+      //     _authenticationService.authInstance.currentUser as AppUser;
       _navigationService.navigateTo(HomeViewRoute);
     } else {
       _navigationService.navigateTo(WelcomeRoute);
     }
+    setBusy(false);
   }
 
   String _title = 'Startup View Model Widget';

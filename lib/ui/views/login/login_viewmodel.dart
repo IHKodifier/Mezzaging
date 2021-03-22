@@ -7,7 +7,6 @@ import '../../../services/navigation_service.dart';
 import '../../../app/service_locator.dart';
 import '../../../app/base_model.dart';
 import '../../../app/route_paths.dart' as routes;
-// import 'package:AuthenticatedBoilerplate/ui/views/home/home_view.dart';
 import '../login/login_view.dart';
 
 class LoginViewModel extends BaseModel {

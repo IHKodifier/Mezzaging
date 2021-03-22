@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // const appPrimaryColor = Color(0xFF6F35A8);
-const appPrimaryColor= Colors.deepOrange;
+const appPrimaryColor = Colors.deepPurpleAccent;
 const appPrimaryLightColor = Color(0xFFF1E6FF);
 const appAccentColor = Colors.deepOrangeAccent;
 const appScaffoldBackgroundColor = Colors.white;
@@ -18,10 +18,11 @@ const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
+const String kPhotoURLIfBlank =
+    'https://st4.depositphotos.com/15973376/24173/v/950/depositphotos_241732228-stock-illustration-user-account-circular-line-icon.jpg';
 
 final otpInputDecoration = InputDecoration(
-  contentPadding:
-      EdgeInsets.symmetric(vertical: 50
+  contentPadding: EdgeInsets.symmetric(vertical: 50
       // getProportionateScreenWidth(15)
       ),
   border: outlineInputBorder(),
@@ -32,8 +33,8 @@ final otpInputDecoration = InputDecoration(
 OutlineInputBorder outlineInputBorder() {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(50
-    // getProportionateScreenWidth(15)
-    ),
+        // getProportionateScreenWidth(15)
+        ),
     borderSide: BorderSide(color: appPrimaryColor),
   );
 }

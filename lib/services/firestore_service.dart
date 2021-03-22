@@ -1,7 +1,7 @@
 /// # region imports
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../app/service_locator.dart';
-import '../models/app_user.dart';
+import '../models/appuser-model.dart';
 import '../services/console_utility.dart';
 import '../services/dialog_service.dart';
 
@@ -10,7 +10,7 @@ import '../services/dialog_service.dart';
 /// # region ClassInfo
 final String className = 'FirestoreService';
 final String _version = '1.0.0';
-final String _packageName = 'AuthenticatedBoilerPlate';
+final String _packageName = 'zimster_messaging';
 
 /// endregion
 
@@ -23,16 +23,13 @@ final String _packageName = 'AuthenticatedBoilerPlate';
 
 class FirestoreService {
   final DialogService dialogService = serviceLocator<DialogService>();
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   CollectionReference _usercollectionReference =
       FirebaseFirestore.instance.collection('appUsers');
 
   Future<bool> createAppUserDoc(
-      {
-      // AuthResult authResult,
-      // var userProfileData,
-      AppUser appUser,
-      bool merge = true}) async {
+      {AppUserModel appUser, bool merge = true}) async {
     try {
       await _usercollectionReference.doc(appUser.email).set(appUser.toJson());
       ConsoleUtility.printToConsole(
@@ -46,4 +43,29 @@ class FirestoreService {
       );
     }
   }
+
+  Future<bool> createAppUserDocforPhoneSignup({
+    AppUserModel appUser,
+    bool merge = true,
+    String phoneNumber,
+  }) async {
+    try {
+      await _usercollectionReference.doc(phoneNumber).set(appUser.toJson());
+      ConsoleUtility.printToConsole(
+          'created Appuser in Firestore\n${appUser.toJson().toString()}');
+    } catch (e) {
+      ConsoleUtility.printToConsole(
+          'Firestore service\n createUserProfile\nerror encountered: \n${e.toString()}');
+      dialogService.showDialog(
+        title: 'Error',
+        description: e.message,
+      );
+    }
+  }
+
+  static Stream<List<AppUserModel>> getUsers() => FirebaseFirestore.instance
+      .collection('/appUsers')
+      .orderBy(AppUserField.lastMessageTime, descending: true)
+      .snapshots()
+      .transform(ConsoleUtility.transformer(AppUserModel.fromJson));
 }

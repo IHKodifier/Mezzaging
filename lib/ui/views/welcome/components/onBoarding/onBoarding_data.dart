@@ -1,6 +1,6 @@
  List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to Authenticated Boiler Plate. Lets build Apps!!!",
+      "text": 'Welcome to Zimster!!!. \n\n a  STRICTLY  "PRIVACY RESPECTING" WhatsApp alternative!!!',
       "image": "assets/images/splash_1.png"
     },
     {

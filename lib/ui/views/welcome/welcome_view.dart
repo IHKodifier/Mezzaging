@@ -9,7 +9,6 @@ import '../../../app/constants.dart';
 
 import '../../../app/size_config.dart';
 import 'package:flutter/material.dart';
-// import 'package:AuthenticatedBoilerplate/ui/views/welcome/components/body.dart';
 
 import 'components/onBoarding/onBoarding_content.dart';
 import 'components/onBoarding/onBoarding_data.dart';

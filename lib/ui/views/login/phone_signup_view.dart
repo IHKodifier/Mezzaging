@@ -1,4 +1,3 @@
-import 'package:AuthenticatedBoilerPlate/services/authentication_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -72,7 +71,7 @@ class PhoneSignupView extends StatelessWidget {
                     height: 10,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * .6,
+                    width: MediaQuery.maybeOf(context).size.width * .6,
                     child: RaisedButton(
                       onPressed: () {
                         model.verifyPhone(this.phoneNumber);
@@ -130,8 +129,7 @@ class PhoneSignupView extends StatelessWidget {
                           .authInstace
                           .signInWithCredential(authCredential);
                       model.authService.handleCredentialSuccess(
-                          userCredential: userCredential,
-                          providerId: 'Phone');
+                          userCredential: userCredential, providerId: 'Phone');
                     },
                   ),
                 ],

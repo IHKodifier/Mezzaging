@@ -1,7 +1,8 @@
-import 'package:AuthenticatedBoilerPlate/app/service_locator.dart';
-import 'package:AuthenticatedBoilerPlate/services/authentication_service.dart';
-import 'package:AuthenticatedBoilerPlate/services/navigation_service.dart';
-import 'package:AuthenticatedBoilerPlate/services/dialog_service.dart';
+import 'package:zimster_messaging/app/service_locator.dart';
+import 'package:zimster_messaging/services/authentication_service.dart';
+import 'package:zimster_messaging/services/dialog_service.dart';
+import 'package:zimster_messaging/services/navigation_service.dart';
+
 import '../../../services/console_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../app/route_paths.dart' as routes;

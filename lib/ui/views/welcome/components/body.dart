@@ -9,7 +9,7 @@ import '../../../../app/constants.dart' as constants;
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.maybeOf(context).size;
     // This size provide us total height and width of our screen
     return Background(
       child: SingleChildScrollView(
@@ -17,31 +17,31 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top:16.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: Text(
-          "Authenticated Boiler Plate",
-          style: TextStyle(
-            // fontSize: getProportionateScreenWidth(36),
-            color: Theme.of(context).primaryColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+                "Authenticated Boiler Plate",
+                style: TextStyle(
+                  // fontSize: getProportionateScreenWidth(36),
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:4.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: Text(
-                "Authenticated BoilerPlate",
-                style:Theme.of(context).textTheme.headline5.copyWith( 
-                // TextStyle(
+                "Zimster Messenger",
+                style: Theme.of(context).textTheme.headline5.copyWith(
+                    // TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     color: Theme.of(context).primaryColor),
               ),
             ),
-            
+
             SizedBox(height: size.height * 0.02),
             Padding(
-              padding: const EdgeInsets.only(left: 64.0,right: 32),
+              padding: const EdgeInsets.only(left: 64.0, right: 32),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -51,7 +51,6 @@ class Body extends StatelessWidget {
                   //       color: Theme.of(context).primaryColor,
                   //       fontStyle: FontStyle.italic),
                   // ),
-                  
                 ],
               ),
             ),
@@ -74,7 +73,6 @@ class Body extends StatelessWidget {
                     },
                   ),
                 );
-                
               },
             ),
             RoundedButton(
@@ -99,16 +97,14 @@ class Body extends StatelessWidget {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all( 24.0),
+              padding: const EdgeInsets.all(24.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('powered by  EnigmaTek Inc.',
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(
-                            color: Theme.of(context).primaryColor,
-                            fontStyle: FontStyle.italic
-                          )),
-                 
+                      style: Theme.of(context).textTheme.subtitle1.copyWith(
+                          color: Theme.of(context).primaryColor,
+                          fontStyle: FontStyle.italic)),
                 ],
               ),
             ),

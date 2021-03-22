@@ -1,3 +1,9 @@
+import 'package:zimster_messaging/app/service_locator.dart';
+import 'package:zimster_messaging/services/console_utility.dart';
+import 'package:zimster_messaging/services/dialog_service.dart';
+import 'package:zimster_messaging/services/firestore_service.dart';
+import 'package:zimster_messaging/app/constants.dart' as constants;
+
 /// # region Legal
 
 /// Copyright 2017 The EnigmaTek.Inc. All rights reserved.
@@ -6,10 +12,6 @@
 /// endregion
 
 // # region imports
-import 'package:AuthenticatedBoilerPlate/app/service_locator.dart';
-import 'package:AuthenticatedBoilerPlate/services/console_utility.dart';
-import 'package:AuthenticatedBoilerPlate/services/dialog_service.dart';
-import 'package:AuthenticatedBoilerPlate/services/firestore_service.dart';
 import '../app/route_paths.dart' as routes;
 import '../services/navigation_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,7 +19,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../models/app_user.dart';
+import '../models/appuser-model.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as JSON;
@@ -27,7 +29,7 @@ import 'dart:convert' as JSON;
 /// # region ClassInfo
 final String className = 'AuthenticationService';
 final String _version = '1.0.0';
-final String _packageName = 'AuthenticatedBoilerPlate';
+final String _packageName = 'zimster_messaging';
 
 /// endregion
 
@@ -51,15 +53,15 @@ class AuthenticationService {
   /// Field
   FirebaseAuth get authInstance => _authInstance;
 
-  /// The App-wide Global currently authenticated [AppUser] if no user is logged in  this wil always be null
-  AppUser currentAppUser = null;
+  /// The App-wide Global currently authenticated [AppUserModel] if no user is logged in  this wil always be null
+  AppUserModel currentAppUser = null;
+  
 
   ///  Holds the appropriate redirect route to navigate to
   String redirectRoute = '';
 
   /// default [photoURL] if none provided
-  String _photoURLifBlank =
-      'https://st4.depositphotos.com/15973376/24173/v/950/depositphotos_241732228-stock-illustration-user-account-circular-line-icon.jpg';
+  String _photoURLifBlank = constants.kPhotoURLIfBlank;
 
   ///  sets flag to display provider bage on View Profile
   bool isNewAppUser = false;
@@ -119,7 +121,7 @@ class AuthenticationService {
 
       // TODO
       // get the user from [AppUsers] collection in firestore
-      _getAppUserDoc(email, 'Email');
+      getAppUserDoc(email, 'Email');
       //set the logged in user as current user across the app
 
       setRedirectRoutes();
@@ -135,13 +137,36 @@ class AuthenticationService {
   /// reads the Firestore document from [AppUsers] collection for the [authInstance.currentUser]
   /// and set it to [currentAppUser]
   ///
-  Future<DocumentSnapshot> _getAppUserDoc(String uid, String providerId) async {
+  Future<DocumentSnapshot> getAppUserDoc(String uid, String providerId) async {
     DocumentSnapshot documentSnapshot =
         await FirebaseFirestore.instance.collection('/appUsers').doc(uid).get();
     if (documentSnapshot.data() != null) {
       ConsoleUtility.printToConsole(
           'AppUser Doc found for ${documentSnapshot.data().toString()}');
-      currentAppUser = AppUser.fromData(documentSnapshot.data(), providerId);
+      currentAppUser =
+          AppUserModel.fromData(documentSnapshot.data(), providerId);
+      ConsoleUtility.printToConsole(
+          'Global currentAppUser  variable has been set to ${currentAppUser.toString()}');
+      return documentSnapshot;
+    } else {
+      ConsoleUtility.printToConsole('AppUser Doc NOT Found');
+      isNewAppUser = false;
+      currentAppUser = null;
+      return documentSnapshot;
+    }
+  }
+
+  Future<DocumentSnapshot> getAppUserDocById(
+    String uid,
+  ) async {
+    DocumentSnapshot documentSnapshot =
+        await FirebaseFirestore.instance.collection('/appUsers').doc(uid).get();
+    if (documentSnapshot.data() != null) {
+      String providerId = documentSnapshot.data()['providerId'];
+      ConsoleUtility.printToConsole(
+          'AppUser Doc found for ${documentSnapshot.data().toString()}');
+      currentAppUser =
+          AppUserModel.fromData(documentSnapshot.data(), providerId);
       ConsoleUtility.printToConsole(
           'Global currentAppUser  variable has been set to ${currentAppUser.toString()}');
       return documentSnapshot;
@@ -159,7 +184,7 @@ class AuthenticationService {
     if (user != null) {
       // await setAuthenticatedUser(user.uid);
 
-      ConsoleUtility.printToConsole('ALREADY logged in user detected.');
+      ConsoleUtility.printToConsole('ALREADY logged in user ${user.email} detected.');
       return true;
     }
     ConsoleUtility.printToConsole(
@@ -329,12 +354,20 @@ class AuthenticationService {
 
 // redirect to profile View
     setRedirectRoutes(routeName: routes.ViewProfileViewRoute);
-    currentAppUser = AppUser.fromUserCredential(
-      userCredential: userCredential,
-      providerId: providerId,
-    );
-
-    _firestoreService.createAppUserDoc(appUser: currentAppUser);
+    if (providerId != 'Phone') {
+      currentAppUser = AppUserModel.fromUserCredential(
+        userCredential: userCredential,
+        providerId: providerId,
+      );
+      _firestoreService.createAppUserDoc(
+        appUser: currentAppUser,
+        merge: true,
+      );
+    } else {
+      _firestoreService.createAppUserDocforPhoneSignup(
+          appUser: currentAppUser,
+          phoneNumber: userCredential.user.phoneNumber);
+    }
     isNewAppUser = true;
     executeRedirects();
   }
@@ -350,7 +383,11 @@ class AuthenticationService {
         ' Firebase User  created in Firebase Auth with user id = \n${userCredential.user.uid}\n...........looking for existing AppUserDoc in appUsers collection in firestore........');
 
     /// check if user has an AppUserDoc in Firestore [appUsers] collection in Firebase
-    final docsnap = await _getAppUserDoc(userCredential.user.email, providerId);
+    String doctoSearch;
+    providerId == 'Phone'
+        ? doctoSearch = userCredential.user.phoneNumber
+        : doctoSearch = userCredential.user.email;
+    final docsnap = await getAppUserDoc(doctoSearch, providerId);
     if (docsnap.exists) {
       //user is not signing in for first time
       //no need to do anything..take him to his home
@@ -358,9 +395,10 @@ class AuthenticationService {
       ConsoleUtility.printToConsole(
           'AppUserDoc Exists........setting currentAppUser');
       currentAppUser =
-          AppUser.fromData(docsnap.data(), docsnap.data()['providerId']);
+          AppUserModel.fromData(docsnap.data(), docsnap.data()['providerId']);
       executeRedirects();
     } else {
+      // this is a new user signing in for forst time
       handleFirstSignIn(userCredential, providerId);
     }
   }
@@ -368,7 +406,7 @@ class AuthenticationService {
   void refreshUser() {}
 
   void setCurrentAppUser({UserCredential userCredential, String providerId}) {
-    currentAppUser = AppUser.fromUserCredential(
+    currentAppUser = AppUserModel.fromUserCredential(
         userCredential: userCredential, providerId: providerId);
 
     switch (providerId) {

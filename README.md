@@ -1,4 +1,4 @@
-# AuthenticatedBoilerplate
+Zimster Messanger
 
 A new Flutter project.
 

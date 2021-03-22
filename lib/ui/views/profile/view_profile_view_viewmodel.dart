@@ -1,10 +1,11 @@
-import 'package:AuthenticatedBoilerPlate/services/console_utility.dart';
+
 import 'package:flutter/material.dart';
+import 'package:zimster_messaging/services/console_utility.dart';
 import '../../../app/base_model.dart';
 import '../../../services/authentication_service.dart';
 import '../../../services/navigation_service.dart';
 import '../../../services/dialog_service.dart';
-import '../../../models/app_user.dart';
+import '../../../models/appuser-model.dart';
 import '../../../app/service_locator.dart';
 import '../../../app/route_paths.dart' as routes;
 
@@ -15,7 +16,7 @@ class ViewProfileViewModel extends BaseModel {
   DialogService _dialogService = serviceLocator<DialogService>();
   NavigationService _navigationService = serviceLocator<NavigationService>();
 
-  AppUser currentAppUser;
+  AppUserModel currentAppUser;
   bool isNewAppUser = false;
   String photoURL;
   getModelReady() {

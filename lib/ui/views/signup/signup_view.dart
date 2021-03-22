@@ -15,7 +15,7 @@ import '../../shared/rounded_password_field.dart';
 import '../../shared/goBack.dart';
 import '../../shared/social_card.dart';
 
-  class SignupView extends StatelessWidget {
+class SignupView extends StatelessWidget {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _profileTitleController = TextEditingController();
@@ -34,7 +34,7 @@ import '../../shared/social_card.dart';
 
   Widget _buildSingleChildScrollView(
       BuildContext context, SignupViewModel model) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.maybeOf(context).size;
     return BusyOverlayBuilder(
       busyValue: model.isBusy,
       title: 'Loading',
@@ -56,14 +56,13 @@ import '../../shared/social_card.dart';
                     padding: EdgeInsets.only(top: 5, left: 20.0, right: 20.0),
                     child: Column(
                       children: <Widget>[
-                    
-                        Image.asset('assets/images/signup.png',
-                        height: 140,),
+                        Image.asset(
+                          'assets/images/signup.png',
+                          height: 140,
+                        ),
                         SizedBox(height: 20.0),
-                        
                         _emailTextField(context),
                         _passwordTextField(context),
-                        
                         verticalSpaceSmall,
                         _disclaimer(context),
                         verticalSpaceSmall,
@@ -155,15 +154,14 @@ import '../../shared/social_card.dart';
     );
   }
 
-  Widget _toggleButtons(
-      BuildContext context, SignupViewModel model) {
+  Widget _toggleButtons(BuildContext context, SignupViewModel model) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Card(
         color: Theme.of(context).primaryColorLight.withAlpha(240),
         // elevation: 2,
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
+          width: MediaQuery.maybeOf(context).size.width * 0.8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

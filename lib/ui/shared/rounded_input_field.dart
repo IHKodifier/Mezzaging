@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 
 import '../../ui/shared/text_field_container.dart' as tfc;
-// import 'package:AuthenticatedBoilerplate/app/text_field_container.dart';
 import '../../app/constants.dart' as consts;
 
 class RoundedInputField extends StatelessWidget {

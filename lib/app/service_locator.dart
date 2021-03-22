@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:zimster_messaging/services/appContact_service.dart';
+import 'package:zimster_messaging/services/chat_service.dart';
 import '../services/dialog_service.dart';
 import '../services/authentication_service.dart';
 import '../services/firestore_service.dart';
@@ -12,4 +14,6 @@ void registerAllServicesWithLocator() {
   serviceLocator.registerLazySingleton(() => DialogService());
   serviceLocator.registerLazySingleton(() => AuthenticationService());
   serviceLocator.registerLazySingleton(() => FirestoreService());
+  serviceLocator.registerLazySingleton(() => ChatService());
+  serviceLocator.registerLazySingleton(() => AppContactService());
 }

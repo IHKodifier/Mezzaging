@@ -1,6 +1,5 @@
-import 'package:AuthenticatedBoilerPlate/managers/dialog_manager.dart';
 import 'package:flutter/material.dart';
-// import 'package:AuthenticatedBoilerplate/managers/dialog_manager.dart';
+import 'package:zimster_messaging/managers/dialog_manager.dart';
 
 import '../services/dialog_service.dart';
 import '../services/navigation_service.dart';
@@ -19,6 +18,9 @@ class App extends StatelessWidget {
       buttonColor: Theme.of(context).primaryColor,
       accentColor: constants.appAccentColor,
       backgroundColor: constants.appScaffoldBackgroundColor,
+      appBarTheme: AppBarTheme().copyWith(
+
+      ),
     );
   }
 
@@ -26,7 +28,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Authenticated Boiler Plate',
+      title: 'Zimster ',
       theme: _buildTheme(context),
       //builder below is need to ensure dialoge service stays at the top of widget tree
       builder: (context, widget) => Navigator(

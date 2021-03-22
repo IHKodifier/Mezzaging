@@ -21,8 +21,10 @@ Widget spacedDivider = Column(
 
 Widget verticalSpace(double height) => SizedBox(height: height);
 
-double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
-double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+double screenWidth(BuildContext context) =>
+    MediaQuery.maybeOf(context).size.width;
+double screenHeight(BuildContext context) =>
+    MediaQuery.maybeOf(context).size.height;
 
 double screenHeightFraction(BuildContext context,
         {int dividedBy = 1, double offsetBy = 0}) =>
@@ -37,3 +39,26 @@ double halfScreenWidth(BuildContext context) =>
 
 double thirdScreenWidth(BuildContext context) =>
     screenWidthFraction(context, dividedBy: 3);
+
+// ignore: avoid_init_to_null
+Widget emailWidget(
+    // ignore: avoid_init_to_null
+    {BuildContext context,
+    String data,
+    TextStyle style = null}) {
+  if (data != null) {
+    return Text(
+      data,
+      style: style,
+    );
+  } else {
+    return Text(
+      'Email not available',
+      style: Theme.of(context).textTheme.bodyText2.copyWith(
+            color: Colors.red,
+          ),
+    );
+  }
+}
+
+Widget userAvatarWidget({String photoURL}) {}

@@ -1,7 +1,8 @@
-import 'package:AuthenticatedBoilerPlate/app/service_locator.dart';
-import 'package:AuthenticatedBoilerPlate/services/authentication_service.dart';
-import 'package:AuthenticatedBoilerPlate/services/navigation_service.dart';
-import 'package:AuthenticatedBoilerPlate/ui/views/login/login_viewmodel.dart';
+import 'package:zimster_messaging/app/service_locator.dart';
+import 'package:zimster_messaging/services/authentication_service.dart';
+import 'package:zimster_messaging/services/navigation_service.dart';
+import 'package:zimster_messaging/ui/views/login/login_viewmodel.dart';
+
 import '../../../../app/route_paths.dart' as routes;
 
 import '../../../shared/social_card.dart';

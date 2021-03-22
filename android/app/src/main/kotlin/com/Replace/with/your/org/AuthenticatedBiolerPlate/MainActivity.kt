@@ -1,4 +1,4 @@
-package com.Replace.with.your.org.AuthenticatedBoilerplate
+package enigmatek.com.pk.zimster
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -40,7 +40,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
     //    TODO: find and replace all instances of 'com.Replace.with.your.org' with desired applicationId. total of 9 instances in 6 files.
-        applicationId "com.Replace.with.your.org.AuthenticatedBoilerPlate"
+        applicationId "enigmatek.com.pk.zimster"
         multiDexEnabled true
         minSdkVersion 16
         targetSdkVersion 28
@@ -63,8 +63,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // implementation platform('com.google.firebase:firebase-bom:26.3.0')
      implementation 'com.android.support:multidex:1.0.3'
      implementation 'com.google.firebase:firebase-analytics:17.5.0'
-      implementation platform('com.google.firebase:firebase-bom:26.2.0')
+      implementation platform('com.google.firebase:firebase-bom:26.3.0')
       implementation 'com.google.firebase:firebase-auth'
 }

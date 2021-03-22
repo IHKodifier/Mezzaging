@@ -1,4 +1,5 @@
-import 'package:AuthenticatedBoilerPlate/ui/views/login/login_viewmodel.dart';
+
+import 'package:zimster_messaging/ui/views/login/login_viewmodel.dart';
 
 import '../../../../app/constants.dart';
 import '../../../../services/form_error.dart';
