@@ -13,18 +13,8 @@ class AppUserField {
 }
 
 class AppUserModel {
-  String fireAuthUid;
-  String userId;
-  String email;
-  String displayName;
-  // final String lastName;
-  // final String userRoles;
-  String photoURL;
-  String providerId;
-  DateTime lastMessageTime;
-
-  AppUserModel(
-      {this.fireAuthUid,
+  AppUserModel({
+    this.fireAuthUid,
       this.userId,
       this.displayName,
       this.providerId,
@@ -34,6 +24,10 @@ class AppUserModel {
       // this.userRoles,
       this.photoURL,
       this.lastMessageTime});
+
+  String fireAuthUid, userId, email, displayName,photoURL,providerId;
+    DateTime lastMessageTime;
+
 
   AppUserModel.fromUserCredential(
       {UserCredential userCredential, String providerId}) {

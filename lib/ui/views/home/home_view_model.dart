@@ -25,7 +25,7 @@ class HomeViewModel extends BaseModel {
   }
 
   Future readContacts() async {
-    appContactService.loadDeviceContacts();
+   await  appContactService.loadDeviceContacts();
   }
 
   AppUserModel get currentAppUser => authService.currentAppUser;

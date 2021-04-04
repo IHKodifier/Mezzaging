@@ -11,13 +11,31 @@ class AppContactModel {
     this.emails,
     this.phones,
     // this.postalAddresses,
-    this.avatar,
+    // this.avatar,
+    this.photoURL,
     this.birthday,
+    this.zimsterId,
     // this.androidAccountType,
     // this.androidAccountTypeRaw,
     // this.androidAccountName,
   });
-  String identifier,displayName,givenName, middleName, prefix, suffix, familyName, company, jobTitle,avatar;
+
+  AppContactModel.fromMinimal({this.zimsterId,
+  this.photoURL});
+
+
+
+  String identifier,
+      displayName,
+      givenName,
+      middleName,
+      prefix,
+      suffix,
+      familyName,
+      company,
+      jobTitle,
+      photoURL,
+      zimsterId;
   Iterable<Item> emails = [];
   Iterable<Item> phones = [];
   // var postalAddresses = [];
