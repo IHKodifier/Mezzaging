@@ -188,7 +188,10 @@
 //         builder: (context, snapshot) {
 //           switch (snapshot.connectionState) {
 //             case ConnectionState.waiting:
-//               return Center(child: CircularProgressIndicator());
+// //               return Center(child:  SpinKitThreeBounce(
+//             color: Theme.of(context).primaryColor,
+//             size: 30,
+//           ),);
 //             default:
 //               if (snapshot.hasError) {
 //                 return buildText('Something Went Wrong Try later');

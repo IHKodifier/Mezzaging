@@ -21,11 +21,11 @@ class AppContactViewModel extends BaseModel {
   AppContactService _appContactService = serviceLocator<AppContactService>();
   List<Contact> deviceContacts, appContacts;
 
-  Future<void> initModel() async {
-    await _appContactService.loadDeviceContacts();
-    deviceContacts = _appContactService.deviceContacts;
-    appContacts = _appContactService.appContacts;
-  }
+  // Future<void> initModel() async {
+  //   // await _appContactService.loadDeviceContacts();
+  //   // deviceContacts = _appContactService.deviceContacts;
+  //   appContacts = _appContactService.appContacts;
+  // }
 
   ContactsService _contactsService = ContactsService();
   // _contactsService.

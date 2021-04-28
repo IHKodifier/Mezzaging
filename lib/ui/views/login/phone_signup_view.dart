@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:international_phone_input/international_phone_input.dart';
 import '../login/phone_signup_viewmodel.dart';
@@ -147,7 +148,10 @@ class PhoneSignupView extends StatelessWidget {
       // color: Theme.of(context).primaryColor.withOpacity(0.25),
       child: Column(
         children: [
-          // model.isBusy ? CircularProgressIndicator() : Container(),
+          model.isBusy ?  SpinKitThreeBounce(
+            color: Theme.of(context).primaryColor,
+            size: 30,
+          ) : Container(),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 16),
             padding: EdgeInsets.symmetric(

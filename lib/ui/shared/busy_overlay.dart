@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 /// A modal overlay that will show over your child widget (fullscreen) when the show value is true
 ///
@@ -29,7 +30,10 @@ class BusyOverlay extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  CircularProgressIndicator(),
+                   SpinKitThreeBounce(
+            color: Theme.of(context).primaryColor,
+            size: 30,
+          ),
                   Text(title,
                       style: TextStyle(
                           fontSize: 16.0,

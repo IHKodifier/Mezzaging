@@ -8,14 +8,14 @@ class AppContactsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AppContactsGridViewModel>.reactive(
       viewModelBuilder: () => AppContactsGridViewModel(),
-      onModelReady: (model) => model.initModel,
+      // onModelReady: (model) => model.initModel,
       builder: thisWidgetBuilder,
     );
   }
 
   thisWidgetBuilder(
     BuildContext context,
-    AppContactsGridViewModel model,
+    AppContactsGridViewModel viewModel,
     Widget child,
   ) {
     return SliverGrid(

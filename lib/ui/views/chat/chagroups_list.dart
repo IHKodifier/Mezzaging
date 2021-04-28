@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zimster_messaging/app/service_locator.dart';
 import 'package:zimster_messaging/models/chatGroup_model.dart';
@@ -31,7 +32,12 @@ class ChatGroupsList extends StatelessWidget {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                child: SpinKitThreeBounce(
+                  color: Theme.of(context).primaryColor,
+                  size: 30,
+                ),
+              );
             default:
               if (snapshot.hasError) {
                 // return buildText('Something Went Wrong Try later');
@@ -43,19 +49,20 @@ class ChatGroupsList extends StatelessWidget {
                 return userChatGroups == null
                     ? buildText('Say Hi..')
                     : ListView.builder(
-        physics: BouncingScrollPhysics(),
-        // reverse: true,
-        itemCount: userChatGroups.docs.length,
-        itemBuilder: (context, index) {
-          ChatGroupModel chatGroupModel =
-              ChatGroupModel.fromMap(userChatGroups.docs[index].data());
-          final userChatGroup = userChatGroups.docs[index];
-          return ChatGroupTile(
-            // userChatGroupData: userChatGroup.data(),
-            chatGroupModel: chatGroupModel,
-            userId: userId,
-          );
-        });
+                        physics: BouncingScrollPhysics(),
+                        // reverse: true,
+                        itemCount: userChatGroups.docs.length,
+                        itemBuilder: (context, index) {
+                          ChatGroupModel chatGroupModel =
+                              ChatGroupModel.fromMap(
+                                  userChatGroups.docs[index].data());
+                          final userChatGroup = userChatGroups.docs[index];
+                          return ChatGroupTile(
+                            // userChatGroupData: userChatGroup.data(),
+                            chatGroupModel: chatGroupModel,
+                            userId: userId,
+                          );
+                        });
               }
           }
         },
@@ -69,6 +76,4 @@ class ChatGroupsList extends StatelessWidget {
           style: TextStyle(fontSize: 24),
         ),
       );
-
- 
 }

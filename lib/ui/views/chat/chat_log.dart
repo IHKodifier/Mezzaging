@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:zimster_messaging/models/appuser-model.dart';
 import 'package:zimster_messaging/app/service_locator.dart';
 import 'package:zimster_messaging/models/message_model.dart';
@@ -50,17 +51,21 @@ class ChatLogWidget extends StatelessWidget {
                   //
 
                   child: StreamBuilder(
-                      stream: model.getChatGroupMessages(chatGroupId: chatGroupId),
+                      stream:
+                          model.getChatGroupMessages(chatGroupId: chatGroupId),
                       // stream: model.g
                       // ignore: missing_return
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          return buildMessage( model, snapshot);
+                          return buildMessage(model, snapshot);
                         } else
-                          return Center(child: CircularProgressIndicator());
-                       
-                      }
-                      ),
+                          return Center(
+                            child: SpinKitThreeBounce(
+                              color: Theme.of(context).primaryColor,
+                              size: 30,
+                            ),
+                          );
+                      }),
                 ),
               ),
               NewMessageWidget(
@@ -77,15 +82,17 @@ class ChatLogWidget extends StatelessWidget {
   Widget buildMessage(ChatGroupViewModel model, dynamic snapshot) {
     // this.querySnapshot = snapshot;
     return ListView.builder(
-      itemCount: snapshot.userChatGroupData.docs.length,
-      itemBuilder: (context, index) {
-      MessageModel message = MessageModel.fromJson(snapshot.userChatGroupData.docs[index].userChatGroupData());
-      if (message.userId == model.authenticationService.currentAppUser.email) {
-        this.isMe = true;
-      } else {
-        this.isMe = false;
-      }
-      return MessageWidget(message: message, isMe: this.isMe);
-    });
+        itemCount: snapshot.userChatGroupData.docs.length,
+        itemBuilder: (context, index) {
+          MessageModel message = MessageModel.fromJson(
+              snapshot.userChatGroupData.docs[index].userChatGroupData());
+          if (message.userId ==
+              model.authenticationService.currentAppUser.email) {
+            this.isMe = true;
+          } else {
+            this.isMe = false;
+          }
+          return MessageWidget(message: message, isMe: this.isMe);
+        });
   }
 }
